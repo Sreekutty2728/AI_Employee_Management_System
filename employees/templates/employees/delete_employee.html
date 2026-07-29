@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Employee</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background:#f4f4f4;
+            margin:40px;
+        }
+
+        .container{
+            width:500px;
+            margin:auto;
+            background:white;
+            padding:30px;
+            border-radius:10px;
+            text-align:center;
+            box-shadow:0px 0px 10px rgba(0,0,0,0.2);
+        }
+
+        h2{
+            color:red;
+        }
+
+        p{
+            font-size:18px;
+        }
+
+        .delete-btn{
+            background:red;
+            color:white;
+            border:none;
+            padding:10px 20px;
+            border-radius:5px;
+            cursor:pointer;
+            font-size:16px;
+        }
+
+        .delete-btn:hover{
+            background:darkred;
+        }
+
+        .cancel-btn{
+            display:inline-block;
+            margin-left:10px;
+            padding:10px 20px;
+            background:#6c757d;
+            color:white;
+            text-decoration:none;
+            border-radius:5px;
+        }
+
+        .cancel-btn:hover{
+            background:#545b62;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Delete Employee</h2>
+
+    <p>
+        Are you sure you want to delete
+        <strong>{{ employee.first_name }} {{ employee.last_name }}</strong>?
+    </p>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <button type="submit" class="delete-btn">
+            Yes, Delete
+        </button>
+
+        <a href="{% url 'employee_list' %}" class="cancel-btn">
+            Cancel
+        </a>
+
+    </form>
+
+</div>
+
+</body>
+</html>

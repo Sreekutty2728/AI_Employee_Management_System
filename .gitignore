@@ -1,0 +1,28 @@
+# Virtual Environment
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Environment variables
+.env
+
+# SQLite database (ignore if using PostgreSQL)
+db.sqlite3
+
+# Django generated files
+*.log
+media/
+staticfiles/
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Operating System files
+.DS_Store
+Thumbs.db
