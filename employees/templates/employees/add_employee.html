@@ -4,127 +4,218 @@
 
 {% block content %}
 
-<div class="container mt-5">
-    <div class="card shadow-lg">
-        <div class="card-header bg-primary text-white">
-            <h3 class="mb-0">Add Employee</h3>
-        </div>
+<style>
 
-        <div class="card-body">
+.employee-card{
+    max-width:1100px;
+    margin:40px auto;
+    border:none;
+    border-radius:18px;
+    overflow:hidden;
+}
 
-            <form method="POST">
-                {% csrf_token %}
+.employee-header{
+    background:linear-gradient(135deg,#0d6efd,#4f46e5);
+    color:white;
+    padding:25px;
+}
 
-                <div class="row">
+.employee-header h2{
+    margin:0;
+    font-weight:bold;
+}
 
-                    <!-- Employee Name -->
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Employee Name</label>
-                        <input type="text"
-                               name="name"
-                               class="form-control"
-                               placeholder="Enter employee name"
-                               required>
-                    </div>
+.employee-body{
+    padding:50px 60px;
+    background:white;
+}
 
-                    <!-- Employee ID -->
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Employee ID</label>
-                        <input type="text"
-                               name="employee_id"
-                               class="form-control"
-                               placeholder="EMP001"
-                               required>
-                    </div>
+.form-row{
+    display:flex;
+    align-items:center;
+    margin-bottom:30px;
+}
 
-                    <!-- Email -->
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Email</label>
-                        <input type="email"
-                               name="email"
-                               class="form-control"
-                               placeholder="employee@email.com"
-                               required>
-                    </div>
+.form-label{
+    width:240px;
+    font-weight:600;
+    font-size:17px;
+    color:#333;
+}
 
-                    <!-- Phone -->
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Phone Number</label>
-                        <input type="text"
-                               name="phone"
-                               class="form-control"
-                               placeholder="9876543210"
-                               required>
-                    </div>
+.form-control,
+.form-select{
+    height:52px;
+    border-radius:10px;
+    font-size:16px;
+}
 
-                    <!-- Department -->
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Department</label>
-                        <select name="department" class="form-select" required>
-                            <option value="">Select Department</option>
-                            <option>HR</option>
-                            <option>Finance</option>
-                            <option>Sales</option>
-                            <option>Marketing</option>
-                            <option>IT</option>
-                        </select>
-                    </div>
+textarea.form-control{
+    height:130px;
+    resize:none;
+}
 
-                    <!-- Designation -->
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Designation</label>
-                        <input type="text"
-                               name="designation"
-                               class="form-control"
-                               placeholder="Software Engineer"
-                               required>
-                    </div>
+.button-area{
+    margin-top:45px;
+    text-align:center;
+}
 
-                    <!-- Salary -->
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Salary</label>
-                        <input type="number"
-                               name="salary"
-                               class="form-control"
-                               placeholder="50000"
-                               required>
-                    </div>
+.btn{
+    min-width:170px;
+    padding:12px;
+    font-size:16px;
+    border-radius:10px;
+}
 
-                    <!-- Date of Joining -->
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Date of Joining</label>
-                        <input type="date"
-                               name="joining_date"
-                               class="form-control"
-                               required>
-                    </div>
+</style>
 
-                    <!-- Address -->
-                    <div class="col-md-12 mb-3">
-                        <label class="form-label">Address</label>
-                        <textarea name="address"
-                                  class="form-control"
-                                  rows="3"
-                                  placeholder="Enter address"></textarea>
-                    </div>
+<div class="card shadow employee-card">
 
-                </div>
-
-                <div class="text-center mt-4">
-                    <button type="submit" class="btn btn-success px-4">
-                        Save Employee
-                    </button>
-
-                    <a href="{% url 'employee_list' %}"
-                       class="btn btn-secondary px-4">
-                        Cancel
-                    </a>
-                </div>
-
-            </form>
-
-        </div>
+    <div class="employee-header">
+        <h2>Add Employee</h2>
     </div>
+
+    <div class="employee-body">
+
+        <form method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+            <!-- Employee Photo -->
+<div class="form-row">
+    <label class="form-label">Employee Photo</label>
+
+    <div class="flex-grow-1">
+        <input
+            type="file"
+            name="profile_image"
+            class="form-control"
+            accept="image/*">
+
+        <small class="text-muted">
+            Upload a JPG, JPEG or PNG image
+        </small>
+    </div>
+</div>
+
+            <div class="form-row">
+                <label class="form-label">Employee Name</label>
+
+                <div class="flex-grow-1">
+                    <input type="text"
+                           name="name"
+                           class="form-control"
+                           placeholder="Enter Employee Name">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label class="form-label">Employee ID</label>
+
+                <div class="flex-grow-1">
+                    <input type="text"
+                           name="employee_id"
+                           class="form-control"
+                           placeholder="EMP001">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label class="form-label">Email Address</label>
+
+                <div class="flex-grow-1">
+                    <input type="email"
+                           name="email"
+                           class="form-control"
+                           placeholder="employee@email.com">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label class="form-label">Phone Number</label>
+
+                <div class="flex-grow-1">
+                    <input type="text"
+                           name="phone"
+                           class="form-control"
+                           placeholder="9876543210">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label class="form-label">Department</label>
+
+                <div class="flex-grow-1">
+                    <select class="form-select" name="department">
+                        <option>Select Department</option>
+                        <option>HR</option>
+                        <option>Finance</option>
+                        <option>Sales</option>
+                        <option>Marketing</option>
+                        <option>IT</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label class="form-label">Designation</label>
+
+                <div class="flex-grow-1">
+                    <input type="text"
+                           name="designation"
+                           class="form-control"
+                           placeholder="Software Engineer">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label class="form-label">Salary</label>
+
+                <div class="flex-grow-1">
+                    <input type="number"
+                           name="salary"
+                           class="form-control"
+                           placeholder="50000">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label class="form-label">Joining Date</label>
+
+                <div class="flex-grow-1">
+                    <input type="date"
+                           name="joining_date"
+                           class="form-control">
+                </div>
+            </div>
+
+            <div class="form-row" style="align-items:flex-start;">
+                <label class="form-label mt-2">Address</label>
+
+                <div class="flex-grow-1">
+                    <textarea
+                        name="address"
+                        class="form-control"
+                        placeholder="Enter Employee Address"></textarea>
+                </div>
+            </div>
+
+            <div class="button-area">
+
+                <button class="btn btn-success">
+                    Save Employee
+                </button>
+
+                <a href="{% url 'employee_list' %}"
+                   class="btn btn-secondary ms-3">
+                    Cancel
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
 </div>
 
 {% endblock %}
