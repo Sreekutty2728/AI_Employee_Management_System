@@ -277,11 +277,11 @@ Employees
 Departments
 </a>
 
-<a href="#">
+<a href="{% url 'attendance_list' %}">
 Attendance
 </a>
 
-<a href="#">
+<a href="{% url 'leave_list' %}">
 Leave Management
 </a>
 
@@ -449,32 +449,21 @@ Manage employees
 
 
 
-<div class="action-box">
-
-<h3>
-📅 Attendance
-</h3>
-
-<p>
-Track attendance
-</p>
-
-</div>
+<a href="{% url 'attendance_list' %}" style="text-decoration:none; color:inherit;">
+    <div class="action-box">
+        <h3>📅 Attendance</h3>
+        <p>Track attendance</p>
+    </div>
+</a>
 
 
 
-
-<div class="action-box">
-
-<h3>
-📄 Leave Requests
-</h3>
-
-<p>
-Approve leaves
-</p>
-
-</div>
+<a href="{% url 'leave_list' %}" style="text-decoration:none; color:inherit;">
+    <div class="action-box">
+        <h3>📄 Leave Requests</h3>
+        <p>Approve leaves</p>
+    </div>
+</a>
 
 
 

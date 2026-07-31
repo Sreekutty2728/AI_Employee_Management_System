@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Leave Request{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-6">
+
+            <div class="card shadow-lg border-0">
+
+                <div class="card-header bg-danger text-white">
+                    <h3 class="mb-0">
+                        <i class="bi bi-trash3-fill"></i>
+                        Delete Leave Request
+                    </h3>
+                </div>
+
+                <div class="card-body text-center">
+
+                    <h4 class="text-danger mb-4">
+                        Are you sure you want to delete this leave request?
+                    </h4>
+
+                    <table class="table table-bordered text-start">
+
+                        <tr>
+                            <th width="40%">Employee</th>
+                            <td>
+                                {{ leave_request.employee.first_name }}
+                                {{ leave_request.employee.last_name }}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>Leave Type</th>
+                            <td>{{ leave_request.leave_type }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Duration</th>
+                            <td>
+                                {{ leave_request.start_date|date:"d M Y" }}
+                                to
+                                {{ leave_request.end_date|date:"d M Y" }}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>Status</th>
+                            <td>{{ leave_request.status }}</td>
+                        </tr>
+
+                    </table>
+
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+                        <a href="{% url 'leave_list' %}" class="btn btn-secondary">
+                            <i class="bi bi-arrow-left-circle"></i>
+                            Cancel
+                        </a>
+
+                        <button type="submit" class="btn btn-danger">
+                            <i class="bi bi-trash-fill"></i>
+                            Delete Leave Request
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block title %}Leave Requests{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow-lg border-0">
+
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h2 class="mb-0">
+                <i class="bi bi-envelope-paper-fill"></i>
+                Leave Requests
+            </h2>
+
+            <a href="{% url 'add_leave' %}" class="btn btn-light">
+                <i class="bi bi-plus-circle"></i>
+                Add Leave Request
+            </a>
+        </div>
+
+        <div class="card-body">
+
+            <div class="row mb-4">
+                <div class="col-md-4 ms-auto">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Search Leave Requests">
+                </div>
+            </div>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-hover align-middle text-center">
+
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Sl. No.</th>
+                            <th>Employee ID</th>
+                            <th>Employee Name</th>
+                            <th>Leave Type</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Reason</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for leave_request in leave_requests %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ leave_request.employee.employee_id }}</td>
+                            <td>
+                                {{ leave_request.employee.first_name }}
+                                {{ leave_request.employee.last_name }}
+                            </td>
+                            <td>{{ leave_request.leave_type }}</td>
+                            <td>{{ leave_request.start_date|date:"d M Y" }}</td>
+                            <td>{{ leave_request.end_date|date:"d M Y" }}</td>
+                            <td>{{ leave_request.reason }}</td>
+                            <td>
+                                {% if leave_request.status == "Approved" %}
+                                    <span class="badge bg-success">Approved</span>
+                                {% elif leave_request.status == "Rejected" %}
+                                    <span class="badge bg-danger">Rejected</span>
+                                {% else %}
+                                    <span class="badge bg-warning text-dark">Pending</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{% url 'edit_leave' leave_request.id %}"
+                                   class="btn btn-warning btn-sm">
+                                    <i class="bi bi-pencil-square"></i>
+                                    Edit
+                                </a>
+
+                                <a href="{% url 'delete_leave' leave_request.id %}"
+                                   class="btn btn-danger btn-sm">
+                                    <i class="bi bi-trash"></i>
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+
+                        {% empty %}
+                        <tr>
+                            <td colspan="9" class="text-muted">
+                                No Leave Requests Found
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'accounts',
     'admin_panel',
     'departments',
+    'attendance',
+    'leave_management',
 ]
 
 MIDDLEWARE = [

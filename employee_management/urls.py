@@ -31,4 +31,10 @@ urlpatterns = [
 
     # Department Module
     path('departments/', include('departments.urls')),
+
+    # Attendance Module
+    path('attendance/', include('attendance.urls')),
+
+    # Leave Management Module
+    path('leave-management/', include('leave_management.urls')),
 ]

@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Leave Request{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+            <div class="card shadow-lg border-0">
+
+                <div class="card-header bg-warning text-dark">
+                    <h3 class="mb-0">
+                        <i class="bi bi-pencil-square"></i>
+                        Edit Leave Request
+                    </h3>
+                </div>
+
+                <div class="card-body">
+
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                {{ form.non_field_errors }}
+                            </div>
+                        {% endif %}
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Employee</label>
+                            {{ form.employee }}
+                            <div class="text-danger small">{{ form.employee.errors }}</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Leave Type</label>
+                            {{ form.leave_type }}
+                            <div class="text-danger small">{{ form.leave_type.errors }}</div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Start Date</label>
+                                {{ form.start_date }}
+                                <div class="text-danger small">{{ form.start_date.errors }}</div>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">End Date</label>
+                                {{ form.end_date }}
+                                <div class="text-danger small">{{ form.end_date.errors }}</div>
+                            </div>
+
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Reason</label>
+                            {{ form.reason }}
+                            <div class="text-danger small">{{ form.reason.errors }}</div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Status</label>
+                            {{ form.status }}
+                            <div class="text-danger small">{{ form.status.errors }}</div>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+
+                            <a href="{% url 'leave_list' %}" class="btn btn-secondary">
+                                <i class="bi bi-arrow-left-circle"></i>
+                                Back
+                            </a>
+
+                            <button type="submit" class="btn btn-warning">
+                                <i class="bi bi-save"></i>
+                                Update Leave Request
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
