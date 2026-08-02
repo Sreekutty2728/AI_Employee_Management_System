@@ -37,4 +37,8 @@ urlpatterns = [
 
     # Leave Management Module
     path('leave-management/', include('leave_management.urls')),
+
+    # Payroll Module
+    path('payroll/', include('payroll.urls')),
+
 ]
