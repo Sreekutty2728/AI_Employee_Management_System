@@ -1,0 +1,5 @@
+{% extends 'reports/report_base.html' %}
+{% block report_table %}
+<thead><tr><th>#</th><th>Employee ID</th><th>Employee</th><th>Email</th><th>Department</th><th>Designation</th><th>Joining Date</th><th>Status</th></tr></thead>
+<tbody>{% for employee in records %}<tr><td>{{ forloop.counter }}</td><td class="fw-semibold">{{ employee.employee_id }}</td><td>{{ employee.first_name }} {{ employee.last_name }}</td><td>{{ employee.email }}</td><td>{{ employee.department }}</td><td>{{ employee.designation }}</td><td>{{ employee.date_of_joining|date:'d M Y' }}</td><td>{% if employee.is_active %}<span class="badge text-bg-success">Active</span>{% else %}<span class="badge text-bg-secondary">Inactive</span>{% endif %}</td></tr>{% empty %}<tr><td colspan="8" class="text-center text-muted py-5"><i class="bi bi-inbox fs-3 d-block mb-2"></i>No employee records match your filters.</td></tr>{% endfor %}</tbody>
+{% endblock %}

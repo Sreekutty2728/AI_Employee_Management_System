@@ -1,0 +1,5 @@
+{% extends 'reports/report_base.html' %}
+{% block report_table %}
+<thead><tr><th>#</th><th>Department</th><th>Code</th><th>Department Head</th><th>Employee Count</th><th>Status</th><th>Description</th></tr></thead>
+<tbody>{% for department in records %}<tr><td>{{ forloop.counter }}</td><td class="fw-semibold">{{ department.department_name }}</td><td>{{ department.department_code }}</td><td>{{ department.department_head|default:'—' }}</td><td><span class="badge text-bg-primary rounded-pill">{{ department.employee_total }}</span></td><td><span class="badge {% if department.status == 'Active' %}text-bg-success{% else %}text-bg-secondary{% endif %}">{{ department.status }}</span></td><td>{{ department.description|default:'—'|truncatechars:70 }}</td></tr>{% empty %}<tr><td colspan="7" class="text-center text-muted py-5"><i class="bi bi-inbox fs-3 d-block mb-2"></i>No department records match your filters.</td></tr>{% endfor %}</tbody>
+{% endblock %}

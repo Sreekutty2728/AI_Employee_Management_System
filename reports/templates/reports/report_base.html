@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ report_title }} | Employee Management System{% endblock %}
+
+{% block content %}
+<style>
+    .report-hero { background: linear-gradient(135deg, #124e78, #1d72b8); border-radius: 16px; color: white; }
+    .filter-card { border-left: 4px solid #1d72b8; }
+    .report-table thead th { background: #124e78; color: #fff; border: 0; white-space: nowrap; }
+    @media print { .navbar, .footer, .no-print { display: none !important; } .content { padding: 0; } .card { box-shadow: none !important; } }
+</style>
+
+<div class="container-xxl py-2">
+    <div class="report-hero p-4 mb-4 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+        <div>
+            <div class="text-white-50 small text-uppercase fw-semibold mb-1">Human Resources Analytics</div>
+            <h2 class="mb-1"><i class="bi bi-file-earmark-bar-graph me-2"></i>{{ report_title }}</h2>
+            <p class="mb-0 text-white-50">Review, filter, and export live workforce data.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2 no-print">
+            <a class="btn btn-light" href="{% url 'export_report_excel' report_key %}?{{ request.GET.urlencode }}"><i class="bi bi-file-earmark-spreadsheet me-1"></i>Export Excel</a>
+            <button class="btn btn-outline-light" onclick="window.print()"><i class="bi bi-file-pdf me-1"></i>Export PDF</button>
+            <button class="btn btn-outline-light" onclick="window.print()"><i class="bi bi-printer me-1"></i>Print Report</button>
+        </div>
+    </div>
+
+    <div class="card filter-card mb-4 no-print">
+        <div class="card-body">
+            <form method="get" class="row g-3 align-items-end">
+                <div class="col-12 col-md-3">
+                    <label class="form-label small fw-semibold">Search</label>
+                    <input class="form-control" name="search" value="{{ selected.search }}" placeholder="Name, ID, email or code">
+                </div>
+                <div class="col-6 col-md-2">
+                    <label class="form-label small fw-semibold">Employee</label>
+                    <select class="form-select" name="employee"><option value="">All employees</option>{% for employee in employees %}<option value="{{ employee.id }}" {% if selected.employee == employee.id|stringformat:'s' %}selected{% endif %}>{{ employee.first_name }} {{ employee.last_name }}</option>{% endfor %}</select>
+                </div>
+                <div class="col-6 col-md-2">
+                    <label class="form-label small fw-semibold">Department</label>
+                    <select class="form-select" name="department"><option value="">All departments</option>{% for department in departments %}<option value="{{ department.department_name }}" {% if selected.department == department.department_name %}selected{% endif %}>{{ department.department_name }}</option>{% endfor %}</select>
+                </div>
+                <div class="col-6 col-md-2">
+                    <label class="form-label small fw-semibold">Month</label>
+                    <select class="form-select" name="month"><option value="">All months</option>{% for value, label in months %}<option value="{{ value }}" {% if selected.month == value %}selected{% endif %}>{{ label }}</option>{% endfor %}</select>
+                </div>
+                <div class="col-6 col-md-1">
+                    <label class="form-label small fw-semibold">Year</label>
+                    <select class="form-select" name="year"><option value="">All</option>{% for year in years %}<option value="{{ year }}" {% if selected.year == year|stringformat:'s' %}selected{% endif %}>{{ year }}</option>{% endfor %}</select>
+                </div>
+                <div class="col-12 col-md-2 d-flex gap-2"><button class="btn btn-primary flex-grow-1"><i class="bi bi-funnel me-1"></i>Filter</button><a href="{{ request.path }}" class="btn btn-outline-secondary" title="Clear filters"><i class="bi bi-arrow-counterclockwise"></i></a></div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table report-table table-hover align-middle mb-0">
+                    {% block report_table %}{% endblock %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

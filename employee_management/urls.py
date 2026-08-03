@@ -41,4 +41,7 @@ urlpatterns = [
     # Payroll Module
     path('payroll/', include('payroll.urls')),
 
+    # Reports Module
+    path('reports/', include('reports.urls')),
+
 ]

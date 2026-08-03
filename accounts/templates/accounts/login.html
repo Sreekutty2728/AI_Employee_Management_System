@@ -32,6 +32,16 @@ h2{
     color:#1f4e79;
 }
 
+.message{
+    background:#d1e7dd;
+    color:#0f5132;
+    border:1px solid #badbcc;
+    border-radius:8px;
+    padding:12px;
+    margin:15px 0;
+    text-align:center;
+}
+
 
 input{
 
@@ -90,8 +100,14 @@ button:hover{
 
 
 <h2>
-Employee Portal
+Employee Login
 </h2>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="message">{{ message }}</div>
+    {% endfor %}
+{% endif %}
 
 
 <form method="POST">

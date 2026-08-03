@@ -11,14 +11,18 @@ def employee_list(request):
 def add_employee(request):
     if request.method == 'POST':
         form = EmployeeForm(request.POST, request.FILES)
+
         if form.is_valid():
             form.save()
             return redirect('employee_list')
+        else:
+            print("FORM ERRORS:")
+            print(form.errors)
+
     else:
         form = EmployeeForm()
 
     return render(request, 'employees/add_employee.html', {'form': form})
-
 
 def edit_employee(request, id):
     employee = get_object_or_404(Employee, id=id)

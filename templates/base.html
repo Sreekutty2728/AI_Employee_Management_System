@@ -118,9 +118,16 @@ Leave
 </li>
 
 <li class="nav-item">
-<a class="nav-link" href="#">
+<a class="nav-link" href="{% url 'payroll_list' %}">
 <i class="bi bi-cash-stack"></i>
 Payroll
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="{% url 'reports_dashboard' %}">
+<i class="bi bi-bar-chart-line-fill"></i>
+Reports
 </a>
 </li>
 
@@ -159,13 +166,19 @@ Profile
 
 <li>
 
-<a class="dropdown-item text-danger" href="#">
+<form method="post" action="{% url 'logout' %}" class="m-0">
+
+{% csrf_token %}
+
+<button type="submit" class="dropdown-item text-danger">
 
 <i class="bi bi-box-arrow-right"></i>
 
 Logout
 
-</a>
+</button>
+
+</form>
 
 </li>
 

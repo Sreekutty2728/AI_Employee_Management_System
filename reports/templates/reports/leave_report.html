@@ -1,0 +1,5 @@
+{% extends 'reports/report_base.html' %}
+{% block report_table %}
+<thead><tr><th>#</th><th>Employee ID</th><th>Employee</th><th>Department</th><th>Leave Type</th><th>Start Date</th><th>End Date</th><th>Status</th></tr></thead>
+<tbody>{% for leave in records %}<tr><td>{{ forloop.counter }}</td><td class="fw-semibold">{{ leave.employee.employee_id }}</td><td>{{ leave.employee.first_name }} {{ leave.employee.last_name }}</td><td>{{ leave.employee.department }}</td><td>{{ leave.leave_type }}</td><td>{{ leave.start_date|date:'d M Y' }}</td><td>{{ leave.end_date|date:'d M Y' }}</td><td><span class="badge {% if leave.status == 'Approved' %}text-bg-success{% elif leave.status == 'Rejected' %}text-bg-danger{% else %}text-bg-warning{% endif %}">{{ leave.status }}</span></td></tr>{% empty %}<tr><td colspan="8" class="text-center text-muted py-5"><i class="bi bi-inbox fs-3 d-block mb-2"></i>No leave records match your filters.</td></tr>{% endfor %}</tbody>
+{% endblock %}

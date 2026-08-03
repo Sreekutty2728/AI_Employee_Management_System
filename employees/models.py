@@ -1,7 +1,16 @@
+from django.conf import settings
 from django.db import models
 
 
 class Employee(models.Model):
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='employee_profile',
+        null=True,
+        blank=True,
+        editable=False,
+    )
     employee_id = models.CharField(max_length=20, unique=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)

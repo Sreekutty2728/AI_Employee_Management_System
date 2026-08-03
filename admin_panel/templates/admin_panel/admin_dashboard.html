@@ -285,17 +285,20 @@ Attendance
 Leave Management
 </a>
 
-<a href="#">
+<a href="{% url 'payroll_list' %}">
 Salary
 </a>
 
-<a href="#">
+<a href="{% url 'reports_dashboard' %}">
 Reports
 </a>
 
-<a href="#">
+<form method="post" action="{% url 'logout' %}" style="margin:10px 0;">
+{% csrf_token %}
+<button type="submit" style="display:block; width:100%; color:white; background:transparent; border:0; text-align:left; padding:15px; border-radius:8px; font:inherit; cursor:pointer;">
 Logout
-</a>
+</button>
+</form>
 
 
 </div>
@@ -374,7 +377,7 @@ Today's Attendance
 </h3>
 
 <p>
-0
+{{ attendance_count }}
 </p>
 
 </div>
