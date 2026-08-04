@@ -5,7 +5,13 @@ from django.urls import Resolver404, resolve
 class EmployeePortalMiddleware:
     """Limit authenticated employees to their own portal routes."""
 
-    employee_allowed_routes = {'dashboard', 'logout', 'login', 'employee_login'}
+    employee_allowed_routes = {
+    'dashboard',
+    'change_password',
+    'logout',
+    'login',
+    'employee_login',
+}
 
     def __init__(self, get_response):
         self.get_response = get_response

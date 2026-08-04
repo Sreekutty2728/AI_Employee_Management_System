@@ -10,12 +10,18 @@
 <body class="bg-light">
     <nav class="navbar navbar-dark bg-primary px-4">
         <span class="navbar-brand mb-0 h1">Employee Portal</span>
-        <form method="post" action="{% url 'logout' %}">
-            {% csrf_token %}
-            <button class="btn btn-outline-light btn-sm" type="submit">
-                <i class="bi bi-box-arrow-right"></i> Logout
-            </button>
-        </form>
+        <div class="d-flex gap-2">
+    <a href="{% url 'change_password' %}" class="btn btn-warning btn-sm">
+        <i class="bi bi-key"></i> Change Password
+    </a>
+
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button class="btn btn-outline-light btn-sm" type="submit">
+            <i class="bi bi-box-arrow-right"></i> Logout
+        </button>
+    </form>
+</div>
     </nav>
 
     <main class="container py-4">

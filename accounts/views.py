@@ -8,6 +8,44 @@ from attendance.models import Attendance
 from employees.models import Employee
 from leave_management.models import LeaveRequest
 from payroll.models import Payroll
+from django.contrib.auth import update_session_auth_hash
+
+@login_required
+def change_password(request):
+
+    if request.method == "POST":
+
+        old_password = request.POST.get("old_password")
+        new_password = request.POST.get("new_password")
+        confirm_password = request.POST.get("confirm_password")
+
+        user = request.user
+
+        if not user.check_password(old_password):
+            messages.error(request, "Current password is incorrect.")
+            return redirect("change_password")
+
+        if new_password != confirm_password:
+            messages.error(request, "New passwords do not match.")
+            return redirect("change_password")
+
+        user.set_password(new_password)
+        user.save()
+
+        update_session_auth_hash(request, user)
+
+        messages.success(
+            request,
+            "Password changed successfully."
+        )
+
+        return redirect("dashboard")
+
+
+    return render(
+        request,
+        "accounts/change_password.html"
+    )
 
 
 def login_view(request):

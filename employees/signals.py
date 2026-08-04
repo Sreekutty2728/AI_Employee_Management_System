@@ -11,19 +11,26 @@ DEFAULT_EMPLOYEE_PASSWORD = 'Welcome@123'
 
 @receiver(post_save, sender=Employee)
 def create_employee_user(sender, instance, created, **kwargs):
-    """Create and link an account whenever a new employee is created."""
+
     if not created or instance.user_id:
         return
 
     User = get_user_model()
-    user, _ = User.objects.get_or_create(
+
+    user, created_user = User.objects.get_or_create(
         username=instance.employee_id,
         defaults={
             'first_name': instance.first_name,
             'last_name': instance.last_name,
             'email': instance.email,
-            'is_active': instance.is_active,
+            'is_active': True,
             'password': make_password(DEFAULT_EMPLOYEE_PASSWORD),
         },
     )
+
+    if created_user:
+        user.set_password(DEFAULT_EMPLOYEE_PASSWORD)
+        user.is_active = True
+        user.save()
+
     Employee.objects.filter(pk=instance.pk).update(user=user)
