@@ -44,4 +44,6 @@ urlpatterns = [
     # Reports Module
     path('reports/', include('reports.urls')),
 
+    path('ai/', include('ai_assistant.urls')),
+
 ]

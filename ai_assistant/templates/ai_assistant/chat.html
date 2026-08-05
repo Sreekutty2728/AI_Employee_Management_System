@@ -1,0 +1,217 @@
+{% extends "base.html" %}
+
+{% block title %}AI HR Assistant | Employee Management System{% endblock %}
+
+{% block content %}
+<style>
+    .chat-page {
+        max-width: 1080px;
+        margin: 0 auto;
+    }
+
+    .chat-card {
+        overflow: hidden;
+        border: 1px solid #e9ecef;
+        border-radius: 1rem;
+        box-shadow: 0 12px 30px rgba(33, 37, 41, 0.08);
+    }
+
+    .chat-card__header {
+        background: #ffffff;
+        border-bottom: 1px solid #e9ecef;
+        padding: 1.25rem 1.5rem;
+    }
+
+    .assistant-avatar {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 46px;
+        height: 46px;
+        color: #ffffff;
+        background: #0d6efd;
+        border-radius: 50%;
+        font-size: 1.25rem;
+    }
+
+    .status-indicator {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        margin-right: 0.35rem;
+        background: #198754;
+        border-radius: 50%;
+    }
+
+    .chat-history {
+        min-height: 440px;
+        height: min(58vh, 620px);
+        overflow-y: auto;
+        padding: 1.75rem;
+        background: #f8f9fa;
+    }
+
+    .chat-message {
+        display: flex;
+        gap: 0.75rem;
+        max-width: 80%;
+        margin-bottom: 1.5rem;
+    }
+
+    .chat-message__avatar {
+        display: inline-flex;
+        flex: 0 0 34px;
+        align-items: center;
+        justify-content: center;
+        width: 34px;
+        height: 34px;
+        color: #0d6efd;
+        background: #e7f1ff;
+        border-radius: 50%;
+    }
+
+    .chat-bubble {
+        padding: 0.85rem 1rem;
+        background: #ffffff;
+        border: 1px solid #e9ecef;
+        border-radius: 0.25rem 1rem 1rem 1rem;
+        box-shadow: 0 2px 5px rgba(33, 37, 41, 0.04);
+    }
+
+    .chat-composer {
+        padding: 1.25rem 1.5rem;
+        background: #ffffff;
+        border-top: 1px solid #e9ecef;
+    }
+
+    .chat-composer .form-control {
+        min-height: 58px;
+        border-radius: 0.75rem;
+        resize: none;
+    }
+
+    .chat-composer .btn {
+        min-width: 112px;
+        min-height: 58px;
+        border-radius: 0.75rem;
+    }
+
+    @media (max-width: 575.98px) {
+        .content { padding: 1rem; }
+        .chat-card__header, .chat-composer { padding: 1rem; }
+        .chat-history { min-height: 390px; padding: 1rem; }
+        .chat-message { max-width: 100%; }
+    }
+
+    .user-message{
+    display:flex;
+    justify-content:flex-end;
+    align-items:flex-end;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.ai-message{
+    display:flex;
+    justify-content:flex-start;
+    align-items:flex-start;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.user-bubble{
+    background:#0d6efd;
+    color:white;
+    padding:12px 16px;
+    border-radius:18px 18px 0 18px;
+    max-width:70%;
+}
+
+.ai-bubble{
+    background:white;
+    color:#212529;
+    padding:12px 16px;
+    border-radius:18px 18px 18px 0;
+    border:1px solid #ddd;
+    max-width:70%;
+}
+</style>
+
+<div class="chat-page py-md-3">
+    <div class="card chat-card">
+        <div class="chat-card__header d-flex align-items-center justify-content-between gap-3">
+            <div class="d-flex align-items-center gap-3">
+                <span class="assistant-avatar" aria-hidden="true">
+                    <i class="bi bi-robot"></i>
+                </span>
+                <div>
+                    <h1 class="h4 mb-1">AI HR Assistant</h1>
+                    <p class="mb-0 small text-muted">
+                        <span class="status-indicator"></span>Online and ready to help
+                    </p>
+                </div>
+            </div>
+            <i class="bi bi-three-dots-vertical text-muted fs-5" aria-hidden="true"></i>
+        </div>
+
+        <div class="chat-history" aria-label="Chat history" role="log">
+            {% if messages %}
+                {% for message in messages %}
+
+    {% if message.sender == "user" %}
+
+        <div class="user-message">
+            <div class="user-bubble">
+                {{ message.text }}
+            </div>
+
+            <span class="chat-message__avatar bg-primary text-white">
+                <i class="bi bi-person-fill"></i>
+            </span>
+        </div>
+
+    {% else %}
+
+        <div class="ai-message">
+            <span class="chat-message__avatar">
+                <i class="bi bi-robot"></i>
+            </span>
+
+            <div class="ai-bubble">
+                {{ message.text }}
+            </div>
+        </div>
+
+    {% endif %}
+
+{% endfor %}
+            {% else %}
+                <div class="chat-message">
+                    <span class="chat-message__avatar" aria-hidden="true">
+                        <i class="bi bi-robot"></i>
+                    </span>
+                    <div>
+                        <div class="chat-bubble">
+                            <p class="mb-1 fw-semibold">Hello! I'm your AI HR Assistant.</p>
+                            <p class="mb-0 text-muted">Ask me about employees, leave policies, attendance, or payroll.</p>
+                        </div>
+                        <small class="d-block mt-1 text-muted">Just now</small>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+        <form method="post" class="chat-composer">
+            {% csrf_token %}
+            <label class="visually-hidden" for="question">Your message</label>
+            <div class="d-flex flex-column flex-sm-row gap-2">
+                <textarea class="form-control" id="question" name="question" rows="2" placeholder="Type your HR question here..." aria-describedby="chat-help"></textarea>
+                <button type="submit" class="btn btn-primary fw-semibold">
+                    <i class="bi bi-send-fill me-1"></i> Send
+                </button>
+            </div>
+            <div id="chat-help" class="form-text mt-2">Press Send to submit your question.</div>
+        </form>
+    </div>
+</div>
+{% endblock %}

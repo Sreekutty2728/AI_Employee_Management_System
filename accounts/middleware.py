@@ -11,6 +11,7 @@ class EmployeePortalMiddleware:
     'logout',
     'login',
     'employee_login',
+    'ai_chat', 
 }
 
     def __init__(self, get_response):

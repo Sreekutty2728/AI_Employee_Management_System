@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'leave_management',
     'payroll',
     'reports',
+    'ai_assistant',
     ]
 
 MIDDLEWARE = [
