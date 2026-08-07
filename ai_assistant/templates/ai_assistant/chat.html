@@ -201,7 +201,7 @@
             {% endif %}
         </div>
 
-        <form method="post" class="chat-composer">
+        <form method="post" class="chat-composer" id="chatForm">
             {% csrf_token %}
             <label class="visually-hidden" for="question">Your message</label>
             <div class="d-flex flex-column flex-sm-row gap-2">
@@ -214,4 +214,22 @@
         </form>
     </div>
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const textarea = document.getElementById("question");
+    const form = document.getElementById("chatForm");
+
+    textarea.addEventListener("keydown", function (event) {
+
+        // Press Enter to send
+        if (event.key === "Enter" && !event.shiftKey) {
+            event.preventDefault();
+            form.submit();
+        }
+
+    });
+
+});
+</script>
 {% endblock %}
