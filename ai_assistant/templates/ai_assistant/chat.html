@@ -178,8 +178,8 @@
             </span>
 
             <div class="ai-bubble">
-                {{ message.text }}
-            </div>
+    {{ message.text|safe }}
+</div>
         </div>
 
     {% endif %}

@@ -1,6 +1,12 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from employees.models import Employee
+import markdown
+
+import os
+from google import genai
+
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 
 @login_required
@@ -53,10 +59,50 @@ def chat(request):
             reply = "Leave information will be connected to the database in the next step."
 
         elif "hello" in q or "hi" in q:
-            reply = f"Hello {employee.first_name}! How can I help you today?"
+            reply = f"Hello {employee.first_name}! How can I help you today."
 
         else:
-            reply = "Sorry, I couldn't understand your question."
+            try:
+                prompt = f"""
+You are an AI HR Assistant for an Employee Management System.
+
+Answer the user's question in a professional and easy-to-read format.
+
+Rules:
+- Use headings.
+- Use bullet points.
+- Keep paragraphs short.
+- Highlight important terms using **bold**.
+- Give examples where appropriate.
+- Do not answer in one long paragraph.
+
+Question:
+{question}
+"""
+
+                response = client.models.generate_content(
+                model="models/gemini-3.6-flash",
+                contents=prompt,
+)
+
+                reply = markdown.markdown(
+    response.text,
+    extensions=[
+        "fenced_code",
+        "tables",
+        "nl2br",
+    ]
+)
+            except Exception as e:
+                error = str(e)
+
+                if "503" in error:
+                    reply = (
+                        "⚠️ Gemini is currently experiencing high demand. "
+                        "Please try again in a few moments."
+                    )
+                else:
+                    reply = f"Gemini Error: {error}"
 
         # Show AI reply
         messages.append({
