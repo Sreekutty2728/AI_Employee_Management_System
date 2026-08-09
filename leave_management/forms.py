@@ -6,7 +6,13 @@ class LeaveRequestForm(forms.ModelForm):
 
     class Meta:
         model = LeaveRequest
-        fields = '__all__'
+        fields = [
+            'employee',
+            'leave_type',
+            'start_date',
+            'end_date',
+            'reason',
+        ]
 
         widgets = {
             'employee': forms.Select(attrs={
@@ -31,9 +37,5 @@ class LeaveRequestForm(forms.ModelForm):
                 'class': 'form-control',
                 'rows': 4,
                 'placeholder': 'Enter leave reason'
-            }),
-
-            'status': forms.Select(attrs={
-                'class': 'form-select'
             }),
         }

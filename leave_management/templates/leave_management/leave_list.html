@@ -72,6 +72,28 @@
                                 {% endif %}
                             </td>
                             <td>
+                                {% if is_admin and leave_request.status == "Pending" %}
+                                <form method="POST"
+                                      action="{% url 'approve_leave' leave_request.id %}"
+                                      class="d-inline">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-success btn-sm">
+                                        <i class="bi bi-check-circle"></i>
+                                        Approve
+                                    </button>
+                                </form>
+
+                                <form method="POST"
+                                      action="{% url 'reject_leave' leave_request.id %}"
+                                      class="d-inline">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-outline-danger btn-sm">
+                                        <i class="bi bi-x-circle"></i>
+                                        Reject
+                                    </button>
+                                </form>
+                                {% endif %}
+
                                 <a href="{% url 'edit_leave' leave_request.id %}"
                                    class="btn btn-warning btn-sm">
                                     <i class="bi bi-pencil-square"></i>
