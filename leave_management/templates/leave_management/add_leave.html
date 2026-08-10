@@ -31,11 +31,13 @@
                             </div>
                         {% endif %}
 
+                        {% if form.employee %}
                         <div class="mb-3">
                             <label class="form-label fw-bold">Employee</label>
                             {{ form.employee }}
                             <div class="text-danger small">{{ form.employee.errors }}</div>
                         </div>
+                        {% endif %}
 
                         <div class="mb-3">
                             <label class="form-label fw-bold">Leave Type</label>

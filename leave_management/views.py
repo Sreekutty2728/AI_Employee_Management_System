@@ -8,6 +8,11 @@ def leave_list(request):
     leave_requests = LeaveRequest.objects.all().order_by(
         '-applied_on'
     )
+    if request.user.is_authenticated and not request.user.is_staff:
+        leave_requests = leave_requests.filter(
+            employee=request.user.employee_profile
+        )
+
 
     return render(
         request,
@@ -19,16 +24,22 @@ def leave_list(request):
     )
 
 
+@login_required
 def add_leave(request):
     if request.method == 'POST':
-        form = LeaveRequestForm(request.POST)
+        form = LeaveRequestForm(request.POST, user=request.user)
 
         if form.is_valid():
-            form.save()
+            leave_request = form.save(commit=False)
+
+            if not request.user.is_staff:
+                leave_request.employee = request.user.employee_profile
+
+            leave_request.save()
             return redirect('leave_list')
 
     else:
-        form = LeaveRequestForm()
+        form = LeaveRequestForm(user=request.user)
 
     return render(
         request,

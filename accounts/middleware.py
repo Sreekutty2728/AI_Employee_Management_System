@@ -12,6 +12,8 @@ class EmployeePortalMiddleware:
     'login',
     'employee_login',
     'ai_chat', 
+    'leave_list',
+    'add_leave',
 }
 
     def __init__(self, get_response):
