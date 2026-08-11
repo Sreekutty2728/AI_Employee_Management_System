@@ -1,0 +1,87 @@
+EMPLOYEE LEAVE POLICY
+
+1. Casual Leave
+Employees can apply for casual leave for personal or short-term needs.
+Casual leave should normally be requested in advance.
+
+2. Sick Leave
+Employees can apply for sick leave when they are ill.EMPLOYEE LEAVE POLICY
+
+1. Casual Leave
+Employees can apply for casual leave for personal or short-term needs.
+Casual leave should normally be requested in advance.
+
+2. Sick Leave
+Employees can apply for sick leave when they are ill.
+A medical certificate may be required for extended sick leave.
+
+3. Annual Leave
+Employees can use annual leave for planned vacations or personal reasons.
+Annual leave should be requested in advance and is subject to approval.
+
+4. Leave Application
+Employees must submit their leave request through the Employee Management System.
+The employee must provide:
+- Leave type
+- Start date
+- End date
+- Reason for leave
+
+5. Leave Approval
+All submitted leave requests will initially have a Pending status.
+The administrator will review the request.
+The administrator can either Approve or Reject the leave request.
+
+6. Leave Request Rules
+Employees should provide accurate dates and a valid reason.
+Employees should not submit overlapping leave requests.
+Employees should apply for planned leave in advance whenever possible.
+
+7. Leave Status
+Pending: The leave request has been submitted but not reviewed.
+Approved: The administrator has approved the leave request.
+Rejected: The administrator has rejected the leave request.
+
+8. General Policy
+Leave approval depends on company policy and administrative approval.
+Employees should contact the administrator if they have questions about their leave.
+
+IMPORTANT:
+The AI HR Assistant should answer leave-policy questions using the information in this document.
+If the requested information is not available in this policy, the AI should tell the employee that the information is not available in the current leave policy and recommend contacting the administrator.
+A medical certificate may be required for extended sick leave.
+
+3. Annual Leave
+Employees can use annual leave for planned vacations or personal reasons.
+Annual leave should be requested in advance and is subject to approval.
+
+4. Leave Application
+Employees must submit their leave request through the Employee Management System.
+The employee must provide:
+- Leave type
+- Start date
+- End date
+- Reason for leave
+
+5. Leave Approval
+All submitted leave requests will initially have a Pending status.
+The administrator will review the request.
+The administrator can either Approve or Reject the leave request.
+
+6. Leave Request Rules
+Employees should provide accurate dates and a valid reason.
+Employees should not submit overlapping leave requests.
+Employees should apply for planned leave in advance whenever possible.
+
+7. Leave Status
+Pending: The leave request has been submitted but not reviewed.
+Approved: The administrator has approved the leave request.
+Rejected: The administrator has rejected the leave request.
+
+8. General Policy
+Leave approval depends on company policy and administrative approval.
+Employees should contact the administrator if they have questions about their leave.
+
+IMPORTANT:
+The AI HR Assistant should answer leave-policy questions using the information in this document.
+If the requested information is not available in this policy, the AI should tell the employee that the information is not available in the current leave policy and recommend contacting the administrator.
