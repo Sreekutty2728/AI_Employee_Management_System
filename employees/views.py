@@ -1,11 +1,32 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.db.models import Q
 from .models import Employee
 from .forms import EmployeeForm
 
 
 def employee_list(request):
+    search_query = request.GET.get('search', '').strip()
+
     employees = Employee.objects.all().order_by('employee_id')
-    return render(request, 'employees/employee_list.html', {'employees': employees})
+
+    if search_query:
+        employees = employees.filter(
+            Q(employee_id__icontains=search_query) |
+            Q(first_name__icontains=search_query) |
+            Q(last_name__icontains=search_query) |
+            Q(email__icontains=search_query) |
+            Q(department__icontains=search_query) |
+            Q(designation__icontains=search_query)
+        )
+
+    return render(
+        request,
+        'employees/employee_list.html',
+        {
+            'employees': employees,
+            'search_query': search_query,
+        }
+    )
 
 
 def add_employee(request):
