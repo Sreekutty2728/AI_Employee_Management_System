@@ -19,9 +19,21 @@
     <!-- Search Box -->
     <div class="row mb-3">
         <div class="col-md-4">
-            <input type="text"
-                   class="form-control"
-                   placeholder="Search Department...">
+            <form method="GET" class="d-flex">
+                <input type="text"
+                       name="search"
+                       class="form-control"
+                       placeholder="Search Department..."
+                       value="{{ search_query }}">
+                <button type="submit" class="btn btn-primary ms-2">
+                    <i class="bi bi-search"></i>
+                </button>
+                {% if search_query %}
+                <a href="{% url 'department_list' %}" class="btn btn-outline-secondary ms-2">
+                    Clear
+                </a>
+                {% endif %}
+            </form>
         </div>
     </div>
 

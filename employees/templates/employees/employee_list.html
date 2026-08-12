@@ -26,9 +26,21 @@
 
                 <div class="col-md-4 ms-auto">
 
-                    <input type="text"
-                           class="form-control"
-                           placeholder="Search Employee">
+                    <form method="GET" class="d-flex">
+                        <input type="text"
+                               name="search"
+                               class="form-control"
+                               placeholder="Search Employee"
+                               value="{{ search_query }}">
+                        <button type="submit" class="btn btn-primary ms-2">
+                            <i class="bi bi-search"></i>
+                        </button>
+                        {% if search_query %}
+                        <a href="{% url 'employee_list' %}" class="btn btn-outline-secondary ms-2">
+                            Clear
+                        </a>
+                        {% endif %}
+                    </form>
 
                 </div>
 

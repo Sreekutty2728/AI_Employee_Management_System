@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.db.models import Q
 from .models import Department
 from .forms import DepartmentForm
 
@@ -8,10 +9,19 @@ from .forms import DepartmentForm
 # ==========================
 def department_list(request):
 
+    search_query = request.GET.get('search', '').strip()
+
     departments = Department.objects.all().order_by('department_name')
 
+    if search_query:
+        departments = departments.filter(
+            Q(department_name__icontains=search_query) |
+            Q(description__icontains=search_query)
+        )
+
     context = {
-        'departments': departments
+        'departments': departments,
+        'search_query': search_query,
     }
 
     return render(
