@@ -202,13 +202,12 @@ def chat(request):
         if rag_answer:
 
             reply = markdown.markdown(
-                rag_answer,
-                extensions=[
-                    "fenced_code",
-                    "tables",
-                    "nl2br",
-                ]
-            )
+    rag_answer.replace("\n", "<br>"),
+    extensions=[
+        "fenced_code",
+        "tables",
+    ]
+)
 
             messages.append({
                 "sender": "ai",
