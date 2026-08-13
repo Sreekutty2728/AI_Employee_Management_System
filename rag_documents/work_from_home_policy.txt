@@ -1,0 +1,98 @@
+WORK FROM HOME POLICY
+
+1. Eligibility
+
+Employees may be permitted to work from home based on their job role,
+work requirements, and company approval.
+
+Work from home is not automatically available to all employees.
+
+2. Work From Home Request
+
+Employees who want to work from home must submit a request through
+the Employee Management System or follow the company's approved
+request process.
+
+The employee should provide:
+
+- Requested date
+- Reason for working from home
+- Any relevant information required by the administrator
+
+3. Approval
+
+All work from home requests are subject to administrative approval.
+
+The administrator may Approve or Reject the request based on:
+
+- Business requirements
+- Employee role
+- Work responsibilities
+- Team requirements
+
+Employees should receive approval before working from home.
+
+4. Working Hours
+
+Employees working from home must follow their normal working hours
+unless a different schedule has been approved.
+
+Employees are expected to remain available during working hours.
+
+5. Attendance
+
+Employees working from home must record their attendance according
+to the company's attendance procedure.
+
+Employees must record their check-in and check-out when required.
+
+6. Work Responsibilities
+
+Employees working from home are responsible for completing their
+assigned work and meeting deadlines.
+
+Employees should remain reachable through approved communication
+channels during working hours.
+
+7. Internet and Equipment
+
+Employees working from home should have a reliable internet
+connection and the necessary equipment to perform their work.
+
+Company equipment must be used responsibly and securely.
+
+8. Data Security
+
+Employees must protect company information while working from home.
+
+Employees should not share company documents, passwords, or
+confidential information with unauthorized people.
+
+Employees should use approved company systems and applications
+when accessing company information.
+
+9. Changes or Cancellation
+
+The administrator may cancel or modify an approved work from home
+arrangement when business requirements require it.
+
+Employees should inform the administrator if they are unable to
+work from home as approved.
+
+10. General Work From Home Rules
+
+Work from home is provided based on company requirements and
+administrative approval.
+
+Employees must follow attendance, security, confidentiality, and
+work-performance requirements while working from home.
+
+IMPORTANT INSTRUCTION FOR AI HR ASSISTANT
+
+The AI HR Assistant should answer work-from-home questions using
+the information in this document.
+
+If the requested information is not available in this policy,
+the AI should tell the employee that the information is not
+available in the current work from home policy and recommend
+contacting the administrator.

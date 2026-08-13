@@ -1,0 +1,77 @@
+EMPLOYEE ATTENDANCE POLICY
+
+1. Attendance Recording
+
+Employees must record their attendance through the Employee Management System.
+
+Attendance is recorded using:
+- Check-in time
+- Check-out time
+- Attendance status
+
+The system can record the following attendance statuses:
+- Present
+- Absent
+- Leave
+- Half Day
+
+2. Check-In and Check-Out
+
+Employees should record their check-in when they start work.
+
+Employees should record their check-out when they finish work.
+
+Employees should ensure that their attendance records are accurate.
+
+3. Present
+
+An employee is marked as Present when they attend work as scheduled and have a valid attendance record.
+
+4. Absent
+
+An employee may be marked as Absent when they do not attend work and do not have an approved leave request.
+
+5. Leave
+
+An employee may be marked as Leave when they have an approved leave request for that day.
+
+6. Half Day
+
+An employee may be marked as Half Day when they work only part of the scheduled working day.
+
+7. Attendance Records
+
+Employees can view their attendance information through the Employee Management System.
+
+Attendance records may include:
+- Date
+- Check-in time
+- Check-out time
+- Status
+- Remarks
+
+8. Attendance Corrections
+
+If an employee notices an incorrect attendance record, they should report the issue to the administrator or HR.
+
+Employees should provide the date and details of the attendance issue.
+
+9. Attendance and Leave
+
+Approved leave and attendance records should be consistent.
+
+Employees should not be marked Present for a day on which they have approved leave.
+
+10. General Attendance Rules
+
+Employees are responsible for maintaining accurate attendance records.
+
+Employees should report attendance-related problems as soon as possible.
+
+The administrator is responsible for reviewing and managing attendance records.
+
+IMPORTANT INSTRUCTION FOR AI HR ASSISTANT
+
+The AI HR Assistant should answer attendance-policy questions using the information in this document.
+
+If the requested information is not available in this policy, the AI should tell the employee that the information is not available in the current attendance policy and recommend contacting the administrator.
