@@ -88,9 +88,9 @@ WSGI_APPLICATION = 'employee_management.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ai_employee_management_db',
+        'NAME': 'AI_Employee_Management_System',
         'USER': 'postgres',
-        'PASSWORD': 'POSTGRESQL',
+        'PASSWORD': '2026',
         'HOST': 'localhost',
         'PORT': '5432',
     }

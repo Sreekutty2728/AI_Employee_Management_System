@@ -491,49 +491,27 @@ Recent Activities
 </h2>
 
 
-
 <table>
 
-
 <tr>
-
-<th>
-Employee
-</th>
-
-<th>
-Action
-</th>
-
-<th>
-Date
-</th>
-
-
+<th>Employee</th>
+<th>Action</th>
+<th>Date</th>
 </tr>
 
-
-
+{% for activity in recent_activities %}
 <tr>
-
-<td>
-No Data
-</td>
-
-<td>
--
-</td>
-
-<td>
--
-</td>
-
-
+<td>{{ activity.employee }}</td>
+<td>{{ activity.action }}</td>
+<td>{{ activity.timestamp|date:"d M Y, h:i A" }}</td>
 </tr>
-
+{% empty %}
+<tr>
+<td colspan="3" style="text-align:center; color:#888;">No recent activity</td>
+</tr>
+{% endfor %}
 
 </table>
-
 
 
 </div>
