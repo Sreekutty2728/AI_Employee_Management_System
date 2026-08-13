@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.core.exceptions import PermissionDenied
 from .models import LeaveRequest
 from .forms import LeaveRequestForm
 
@@ -48,11 +49,15 @@ def add_leave(request):
     )
 
 
+@login_required
 def edit_leave(request, id):
     leave_request = get_object_or_404(
         LeaveRequest,
         id=id
     )
+
+    if request.user.is_staff or leave_request.employee != request.user.employee_profile:
+        raise PermissionDenied
 
     if request.method == 'POST':
         form = LeaveRequestForm(
@@ -106,11 +111,15 @@ def reject_leave(request, id):
     return redirect('leave_list')
 
 
+@login_required
 def delete_leave(request, id):
     leave_request = get_object_or_404(
         LeaveRequest,
         id=id
     )
+
+    if request.user.is_staff or leave_request.employee != request.user.employee_profile:
+        raise PermissionDenied
 
     if request.method == 'POST':
         leave_request.delete()
