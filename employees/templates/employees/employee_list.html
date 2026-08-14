@@ -22,30 +22,41 @@
 
         <div class="card-body">
 
+            <!-- Search -->
             <div class="row mb-4">
 
                 <div class="col-md-4 ms-auto">
 
                     <form method="GET" class="d-flex">
+
                         <input type="text"
                                name="search"
                                class="form-control"
                                placeholder="Search Employee"
                                value="{{ search_query }}">
-                        <button type="submit" class="btn btn-primary ms-2">
+
+                        <button type="submit"
+                                class="btn btn-primary ms-2">
                             <i class="bi bi-search"></i>
                         </button>
+
                         {% if search_query %}
-                        <a href="{% url 'employee_list' %}" class="btn btn-outline-secondary ms-2">
+
+                        <a href="{% url 'employee_list' %}"
+                           class="btn btn-outline-secondary ms-2">
                             Clear
                         </a>
+
                         {% endif %}
+
                     </form>
 
                 </div>
 
             </div>
 
+
+            <!-- Employee Table -->
             <div class="table-responsive">
 
                 <table class="table table-bordered table-hover align-middle text-center">
@@ -67,43 +78,98 @@
 
                     </thead>
 
+
                     <tbody>
 
                         {% for employee in employees %}
 
-                        <tr>
+                        <!-- Clickable Employee Row -->
+                        <tr style="cursor: pointer;"
+    data-url="{% url 'employee_detail' employee.id %}"
+    onclick="window.location.href=this.dataset.url;">
+                            <!-- Sl. No. -->
+                            <td>
+                                {{ forloop.counter }}
+                            </td>
 
-                            <td>{{ forloop.counter }}</td>
 
+                            <!-- Employee Photo -->
                             <td>
 
                                 {% if employee.profile_image %}
 
                                     <img src="{{ employee.profile_image.url }}"
-                                         width="60"
-                                         height="60"
-                                         style="border-radius:50%; object-fit:cover;">
+     alt=""
+     width="60"
+     height="60"
+     style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;">
 
                                 {% else %}
 
-                                    <img src="https://via.placeholder.com/60"
-                                         width="60"
-                                         height="60"
-                                         style="border-radius:50%;">
+                                    <div style="
+                                        width: 60px;
+                                        height: 60px;
+                                        border-radius: 50%;
+                                        background: #e9ecef;
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                        margin: auto;
+                                        font-size: 12px;
+                                        color: #777;
+                                    ">
+                                        No Image
+                                    </div>
 
                                 {% endif %}
 
                             </td>
 
-                            <td>{{ employee.employee_id }}</td>
-                            <td>{{ employee.first_name }}</td>
-                            <td>{{ employee.last_name }}</td>
-                            <td>{{ employee.email }}</td>
-                            <td>{{ employee.department }}</td>
-                            <td>{{ employee.designation }}</td>
-                            <td>{{ employee.salary }}</td>
 
+                            <!-- Employee ID -->
                             <td>
+                                {{ employee.employee_id }}
+                            </td>
+
+
+                            <!-- First Name -->
+                            <td>
+                                {{ employee.first_name }}
+                            </td>
+
+
+                            <!-- Last Name -->
+                            <td>
+                                {{ employee.last_name }}
+                            </td>
+
+
+                            <!-- Email -->
+                            <td>
+                                {{ employee.email }}
+                            </td>
+
+
+                            <!-- Department -->
+                            <td>
+                                {{ employee.department }}
+                            </td>
+
+
+                            <!-- Designation -->
+                            <td>
+                                {{ employee.designation }}
+                            </td>
+
+
+                            <!-- Salary -->
+                            <td>
+                                {{ employee.salary }}
+                            </td>
+
+
+                            <!-- Actions -->
+                            <td onclick="event.stopPropagation();">
 
                                 <a href="{% url 'edit_employee' employee.id %}"
                                    class="btn btn-warning btn-sm">
@@ -119,11 +185,12 @@
 
                         </tr>
 
+
                         {% empty %}
 
                         <tr>
 
-                            <td colspan="10">
+                            <td colspan="10" class="text-center">
 
                                 No Employees Found
 

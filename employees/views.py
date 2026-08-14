@@ -67,3 +67,12 @@ def delete_employee(request, id):
         return redirect('employee_list')
 
     return render(request, 'employees/delete_employee.html', {'employee': employee})
+
+def employee_detail(request, id):
+    employee = get_object_or_404(Employee, id=id)
+
+    return render(
+        request,
+        'employees/employee_detail.html',
+        {'employee': employee}
+    )
